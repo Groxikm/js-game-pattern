@@ -1,3 +1,6 @@
+//this script was expected to be a separatte part;
+// however, for now I have to use this copied and pasted directly to game.js
+
 function loadScripts(scripts, callback) {
     const promises = scripts.map(script => {
         return new Promise((resolve, reject) => {

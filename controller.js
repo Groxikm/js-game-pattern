@@ -1,6 +1,4 @@
-import { Body_ } from './Body_.js';
-
-export class Joystick extends Body_ {
+Class.Joystick = class Joystick extends Interface.Body_ {
     constructor(x, y, width, height, color) {
         super(x, y, 0, 0, 0, width, height, color); // dx, dy, and speed are set to 0 as the joystick itself doesn't move
         this.direction = ''; // Track the direction based on input
@@ -38,7 +36,7 @@ export class Joystick extends Body_ {
 }
 
 //controller
-export class Controller {
+class Controller {
     constructor(canvas, player) {
         this.canvas = canvas;
         this.ctx = canvas.getContext('2d');
@@ -74,7 +72,7 @@ export class Controller {
         // Joystick is fixed in the bottom left corner of the canvas
         const joystickWidth = 100;
         const joystickHeight = 100;
-        this.joystick = new Joystick(20, this.canvas.height - joystickHeight - 20, joystickWidth, joystickHeight, 'white');
+        this.joystick = new Class.Joystick(20, this.canvas.height - joystickHeight - 20, joystickWidth, joystickHeight, 'white');
     }
 
     update() {

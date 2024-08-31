@@ -1,6 +1,7 @@
-import { Body_ } from '../interfaces/body_.js';
+var Interface = Interface || {};
+var Class = Class || {};
 
-export class Player extends Body_ {
+Class.Player = class Player extends Interface.Body_ {
     constructor(x, y, dx,dy,speed,width, height, color) {
         super(x, y, dx,dy,speed,width, height, color);
     }
@@ -20,4 +21,10 @@ export class Player extends Body_ {
         if (this.y < 0) this.y = 0;
         if (this.y + this.height > canvas.height) this.y = canvas.height - this.height;
     }
+    changeVelocity(dx, dy) {
+        this.dx += dx;
+        this.dy += dy;
+    }
 }
+
+

@@ -1,6 +1,7 @@
-import { Body } from '../interfaces/body_.js';
+var Interface = Interface || {};
+var Class = Class || {};
 
-export class Platform extends Body {
+Class.Platform = class Platform extends Interface.Body_ {
     constructor(x, y, dx,dy,speed,width, height, color) {
         super(x, y, dx,dy,speed,width, height, color);
     }
@@ -10,3 +11,4 @@ export class Platform extends Body {
         ctx.fillRect(this.x, this.y, this.width, this.height);
     }
 }
+
