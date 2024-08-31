@@ -1,4 +1,4 @@
-var Interface = Interface || {};
+// no usage of AbstractClass is expected here :)
 var Class = Class || {};
 
 const canvas = document.getElementById('gameCanvas');

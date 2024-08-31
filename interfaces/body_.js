@@ -1,8 +1,8 @@
-var Interface = Interface || {};
+var AbstractClass = AbstractClass || {};
 
-Interface.Body_ = class Body_ {
+AbstractClass.Body_ = class Body_ {
     constructor(x, y, dx, dy, speed, width, height, color) {
-        if (this.constructor === Interface.Body_) {
+        if (this.constructor === AbstractClass.Body_) {
             throw new Error("Body_ is an abstract class and cannot be instantiated directly.");
         }
         this.x = x;

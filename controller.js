@@ -1,4 +1,6 @@
-Class.Joystick = class Joystick extends Interface.Body_ {
+var AbstractClass = AbstractClass || {};
+
+Class.Joystick = class Joystick extends AbstractClass.Body_ {
     constructor(x, y, width, height, color) {
         super(x, y, 0, 0, 0, width, height, color); // dx, dy, and speed are set to 0 as the joystick itself doesn't move
         this.direction = ''; // Track the direction based on input

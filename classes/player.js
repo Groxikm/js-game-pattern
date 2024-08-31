@@ -1,7 +1,7 @@
-var Interface = Interface || {};
+var AbstractClass = AbstractClass || {};
 var Class = Class || {};
 
-Class.Player = class Player extends Interface.Body_ {
+Class.Player = class Player extends AbstractClass.Body_ {
     constructor(x, y, dx,dy,speed,width, height, color) {
         super(x, y, dx,dy,speed,width, height, color);
     }
