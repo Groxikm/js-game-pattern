@@ -1,18 +1,3 @@
-//loading separated scripts
-//this is the shitty way I'm able to use to make files separation
-/*document.addEventListener('DOMContentLoaded', () => {
-    const loaderScript = document.createElement('script');
-    loaderScript.src = 'scripts-loader-and-load-settings.js';
-    loaderScript.onload = () => {
-        console.log('scripts-loader.js loaded successfully.');
-        // Assuming the loadScripts call inside scripts-loader.js handles loading
-        // and invoking the necessary callbacks
-    };
-    loaderScript.onerror = () => {
-        console.error('Failed to load scripts-loader.js');
-    };
-    document.head.appendChild(loaderScript);
-});*/
 function loadScripts(scripts, callback) {
     const promises = scripts.map(script => {
         return new Promise((resolve, reject) => {
@@ -44,7 +29,7 @@ const scriptsToLoad = [
 
 loadScripts(scriptsToLoad, () => {
     console.log('Executing callback after scripts are loaded.');
-    // Any additional initialization code can go here
+
 });
 
 
@@ -60,17 +45,12 @@ function clearCanvas() {
     ctx.clearRect(0, 0, gameWidth, gameHeight);
 }
 
-// Update game loop
+// game loop
 function update() {
     if (isRunning) {
         clearCanvas();
-        movePlayer();
-        drawPlayer();
-        drawPlatforms();
+
         requestAnimationFrame(update);
     }
 }
 
-// Initial draw
-drawPlayer();
-drawPlatforms();

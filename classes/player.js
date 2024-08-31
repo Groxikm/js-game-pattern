@@ -1,26 +1,23 @@
-const player = {
-    x: 50,
-    y: gameHeight - 150,
-    width: 50,
-    height: 50,
-    color: 'red',
-    speed: 5,
-    dx: 0,
-    dy: 0
-};
+import { Body_ } from '../interfaces/body_.js';
 
-function drawPlayer() {
-    ctx.fillStyle = player.color;
-    ctx.fillRect(player.x, player.y, player.width, player.height);
-}
+export class Player extends Body_ {
+    constructor(x, y, dx,dy,speed,width, height, color) {
+        super(x, y, dx,dy,speed,width, height, color);
+    }
 
-function movePlayer() {
-    player.x += player.dx;
-    player.y += player.dy;
+    draw(ctx) {
+        ctx.fillStyle = this.color;
+        ctx.fillRect(this.x, this.y, this.width, this.height);
+    }
 
-    // Check for canvas boundaries
-    if (player.x < 0) player.x = 0;
-    if (player.x + player.width > gameWidth) player.x = gameWidth - player.width;
-    if (player.y < 0) player.y = 0;
-    if (player.y + player.height > gameHeight) player.y = gameHeight - player.height;
+    move() {
+        this.x += this.dx;
+        this.y += this.dy;
+
+        // Check for canvas boundaries (assuming canvas context is available globally)
+        if (this.x < 0) this.x = 0;
+        if (this.x + this.width > canvas.width) this.x = canvas.width - this.width;
+        if (this.y < 0) this.y = 0;
+        if (this.y + this.height > canvas.height) this.y = canvas.height - this.height;
+    }
 }
