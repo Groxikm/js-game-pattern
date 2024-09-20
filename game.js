@@ -1,33 +1,31 @@
-
-function drawObjects(drawableObjects) {
-    drawableObjects.forEach(obj => obj.draw(ctx));
-}
-
-function moveObjects(moveableObjects, dt) {
-    moveableObjects.forEach(obj => obj.move(dt));
-}
-
-function clearCanvas() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-}
-
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
-const player = new Class.Player(150, canvas.height - 150, 50, 50, 'red');
+let drawableObjects = [];
+let moveableObjects = [];
+
+const player = new Class.Player(150, canvas.height - 150, 50, 50, 100, 50, 50, 'red');
 const platforms = [
     new Class.Platform(0, canvas.height - 100, canvas.width, 20, 'green'),
     new Class.Platform(200, canvas.height - 200, 100, 20, 'green')
 ];
 
-let drawableObjects = [player, ...platforms];
-let moveableObjects =  [player];
+function addObject(obj, isMovable = false) {
+    drawableObjects.push(obj);
+    if (isMovable) {
+        moveableObjects.push(obj);
+    }
+}
+
+addObject(player, true);
+
+platforms.forEach(platform => addObject(platform));
 
 const controller = new Controller(canvas, player);
-let lastTime = 0;
 
+// Game loop
+let lastTime = 0;
 let isRunning = true;
-requestAnimationFrame(update);
 
 function update(timestamp) {
     if (isRunning) {
@@ -37,19 +35,16 @@ function update(timestamp) {
         clearCanvas();
         moveObjects(moveableObjects, dt);
 
-        controller.update(); // Update the controller (and draw the joystick if needed)
+        controller.update();
         drawObjects(drawableObjects);
 
         requestAnimationFrame(update);
     }
 }
 
-// Handle input events
-function handleInput(e) {
-    controller.handleInput(e);
-}
+requestAnimationFrame(update);
 
-// Event listeners for both keyboard and touch/mouse
+// Event listeners for handling input
 document.addEventListener('keydown', handleInput);
 document.addEventListener('keyup', handleInput);
 document.addEventListener('touchstart', handleInput);
@@ -58,3 +53,18 @@ document.addEventListener('mousedown', handleInput);
 document.addEventListener('mousemove', handleInput);
 document.addEventListener('mouseup', handleInput);
 
+function clearCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+function drawObjects(objects) {
+    objects.forEach(obj => obj.draw(ctx));
+}
+
+function moveObjects(objects, dt) {
+    objects.forEach(obj => obj.move(dt));
+}
+
+function handleInput(e) {
+    controller.handleInput(e);
+}

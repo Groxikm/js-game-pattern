@@ -8,4 +8,5 @@ Class.Player = class Player extends AbstractClass.Body_ {
         ctx.fillRect(this.x, this.y, this.width, this.height);
     }
 
+    // Inherits move() method from Body_ (no need to override unless custom logic is needed)
 };
